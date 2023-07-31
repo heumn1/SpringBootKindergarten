@@ -6,6 +6,8 @@
 </head>
 <body>
 
+
+<!-- Добавление ребенка-->
 <div>
     <form action="/add" method="post">
         <input type="text" name="nameChild" placeholder="Имя">
@@ -21,7 +23,18 @@
         <button type="submit">Добавить</button>
     </form>
 </div>
+<br/>
+<div>
+    <form action="/filter" method="post">
+        <input type="text" name="lastname" placeholder="Фамилия">
+        <br/>
+        <button type="submit">Найти</button>
+    </form>
+</div>
 
+
+
+<!--Таблица с детьми-->
 <table border="1" style="width:300px">
     <tr>
         <td>id</td>
@@ -40,5 +53,8 @@
         <td th:text="${el.groupa}" />
     </tr>
 </table>
+
+
+
 </body>
 </html>

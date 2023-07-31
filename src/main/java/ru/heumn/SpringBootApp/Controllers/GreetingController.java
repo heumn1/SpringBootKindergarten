@@ -20,11 +20,12 @@ public class GreetingController {
         model.addAttribute("childs", childs);
         return "allChilds";
     }
-    @GetMapping("/add")
-    public String childsAdd(Model model) {
-        return "addChild";
+    @PostMapping("/filter")
+    public String childfind(@RequestParam String lastname, Model model){
+        Iterable<Childs> childs = childsRepository.findByLastname(lastname);
+        model.addAttribute("childs", childs);
+        return "allChilds";
     }
-
     @PostMapping("/add")
     public String childPostADD(
             @RequestParam String nameChild,@RequestParam String lastname,
