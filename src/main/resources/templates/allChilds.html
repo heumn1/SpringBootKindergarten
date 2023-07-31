@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form action="/add" method="post">
+        <input type="text" name="nameChild" placeholder="Имя">
+        <br/>
+        <input type="text" name="lastname" placeholder="Фамилия">
+        <br/>
+        <input type="text" name="patronymic" placeholder="Отчетство">
+        <br/>
+        <input type="text" name="age" placeholder="Лет">
+        <br/>
+        <input type="text" name="groupa" placeholder="Группа">
+        <br/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<table border="1" style="width:300px">
+    <tr>
+        <td>id</td>
+        <td>nameChild</td>
+        <td>lastname</td>
+        <td>patronymic</td>
+        <td>age</td>
+        <td>groupa</td>
+    </tr>
+    <tr th:each="el : ${childs} " >
+        <td th:text="${el.id}" />
+        <td th:text="${el.nameChild}" />
+        <td th:text="${el.lastname}" />
+        <td th:text="${el.patronymic}" />
+        <td th:text="${el.age}" />
+        <td th:text="${el.groupa}" />
+    </tr>
+</table>
+</body>
+</html>
