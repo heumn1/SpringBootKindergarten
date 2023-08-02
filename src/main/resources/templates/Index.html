@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Главная</title>
@@ -11,8 +11,8 @@
     <h1> Детский садик "Счасливый ребёнок" </h1>
     <h2> Мы рады вас видеть! </h2>
 
-    <form action="/logout" method="post">
-        <input type="submit" value="Sign Out"/>
+    <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
     </form>
 
     <br/>

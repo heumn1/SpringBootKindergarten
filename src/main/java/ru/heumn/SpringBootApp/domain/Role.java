@@ -1,2 +1,5 @@
-package ru.heumn.SpringBootApp.domain;public class Role {
+package ru.heumn.SpringBootApp.domain;
+
+public enum Role {
+    USER;
 }

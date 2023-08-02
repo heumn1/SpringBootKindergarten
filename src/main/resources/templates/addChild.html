@@ -21,7 +21,7 @@
     <a href="/Reg"><button class="buttonmenu"> Вход </button></a>
 </header>
 <div>
-    <form action="/add" method="post">
+    <form th:action="@{/add}" method="post">
         <input type="text" name="nameChild" placeholder="Имя">
         <br/>
         <input type="text" name="lastname" placeholder="Фамилия">
