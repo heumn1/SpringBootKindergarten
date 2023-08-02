@@ -20,6 +20,27 @@ public class GreetingController {
         model.addAttribute("childs", childs);
         return "allChilds";
     }
+    @GetMapping("/addChild")
+    public String addChild(Model model) {
+        return "addChild";
+    }
+    @GetMapping("/about")
+    public String about(Model model) {
+        return "about";
+    }
+    @GetMapping("/")
+    public String mainChild(Model model) {
+        return "index";
+    }
+
+
+
+
+
+
+
+
+
     @PostMapping("/filter")
     public String childfind(@RequestParam String lastname, Model model){
         Iterable<Childs> childs = childsRepository.findByLastname(lastname);

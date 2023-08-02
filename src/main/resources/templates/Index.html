@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/index.css" th:href="@{/css/index.css}" />
 </head>
 <body>
+<header class="header" >
+    <h1> Детский садик "Счасливый ребёнок" </h1>
+    <h2> Мы рады вас видеть! </h2>
+
+    <form action="/logout" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
+    <br/>
+    <a href="/"><button class="buttonmenu"> Главная </button></a>
+    <a href="/about"><button class="buttonmenu"> О нас </button></a>
+    <a href="/news"><button class="buttonmenu"> Новости </button></a>
+    <a href="/gallery"><button class="buttonmenu"> Галерея </button></a>
+    <a href="/staff"><button class="buttonmenu"> Персонал </button></a>
+    <a href="/feedback"><button class="buttonmenu"> Отзывы </button></a>
+    <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
+    <a href="/Reg"><button class="buttonmenu"> Вход </button></a>
+</header>
     <div>
-        <form action="/add" method="post">
-            <input type="text" name="nameChild" placeholder="Имя">
-            <input type="text" name="lastname" placeholder="Фамилия">
-            <input type="text" name="patronymic" placeholder="Отчетство">
-            <input type="text" name="age" placeholder="Лет">
-            <input type="text" name="groupa" placeholder="Группа">
-            <button type="submit">Добавить</button>
-        </form>
+
     </div>
+    <footer>
+        <h5> О сайте: </h5>
+        <h6> Учебный сайт для тренировки навыков программирования
+             на примере организации частного детского сада </h6>
+    </footer>
+
+
 </body>
 </html>
