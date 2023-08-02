@@ -31,16 +31,15 @@ public class GreetingController {
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
-
         if(userFromDb != null)
         {
              model.addAttribute("message", "User exists");
-            System.out.println("СБДААА");
              return "registration";
         }
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+        userRepo.save(user);
 
 
         return "redirect:/login";
@@ -63,7 +62,6 @@ public class GreetingController {
     }
     @GetMapping("/")
     public String mainChild(Model model) {
-        System.out.println("СБДААА");
         return "index";
     }
 
