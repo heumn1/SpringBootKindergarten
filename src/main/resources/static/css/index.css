@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+header {
+    overflow: hidden;
+    width:100%;
+    font-size: 24px;
+    background-color: #ffea00;
+    color: #e70000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+footer {
+    overflow: hidden;
+    bottom: 0;
+    width:100%;
+    font-size: 24px;
+    background-color: #ffea00;
+}
+.buttonmenu {
+    background-color: #f3da25;
+    width: 20%;
+    height: 55px;
+    border-bottom-color: #f6e51e;
+    border-top-color: #f6e51e;
+}
+
+.textAboutMain {
+    text-align: justify;
+    font-size: 30px;
+}
