@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.heumn.SpringBootApp.domain.Childs;
-import ru.heumn.SpringBootApp.domain.Comment;
-import ru.heumn.SpringBootApp.domain.Role;
-import ru.heumn.SpringBootApp.domain.User;
+import ru.heumn.SpringBootApp.domain.*;
 import ru.heumn.SpringBootApp.repos.ChildsRepository;
 import ru.heumn.SpringBootApp.repos.CommetsRepo;
+import ru.heumn.SpringBootApp.repos.RegisUserRepo;
 import ru.heumn.SpringBootApp.repos.UserRepo;
 import ru.heumn.SpringBootApp.service.UserService;
 
@@ -30,6 +28,8 @@ public class GreetingController {
     @Autowired
     private UserRepo userRepo;
     @Autowired
+    private RegisUserRepo regisUserRepo;
+    @Autowired
     private UserService userService;
 
     @GetMapping("/registration")
@@ -39,8 +39,8 @@ public class GreetingController {
 
 
     @PostMapping("/registration")
-    public String addUser(User user, Model model) {
-        if(!userService.addUser(user))
+    public String addUser(RegisUser regisUser, Model model) {
+        if(!userService.addUser(regisUser))
         {
             model.addAttribute("message", "User exists");
             return "registration";
