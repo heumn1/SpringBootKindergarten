@@ -2,16 +2,21 @@ package ru.heumn.SpringBootApp.Controllers;
 
 import jakarta.persistence.CollectionTable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.heumn.SpringBootApp.domain.Childs;
+import ru.heumn.SpringBootApp.domain.Comment;
 import ru.heumn.SpringBootApp.domain.Role;
 import ru.heumn.SpringBootApp.domain.User;
 import ru.heumn.SpringBootApp.repos.ChildsRepository;
+import ru.heumn.SpringBootApp.repos.CommetsRepo;
 import ru.heumn.SpringBootApp.repos.UserRepo;
+import ru.heumn.SpringBootApp.service.UserService;
 
 import java.net.PortUnreachableException;
 import java.util.Collections;
@@ -20,30 +25,58 @@ import java.util.Collections;
 public class GreetingController {
     @Autowired
     private ChildsRepository childsRepository;
-
+    @Autowired
+    private CommetsRepo commetsRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/registration")
     public String registration(Model model) {
         return "registration";
     }
+
+
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
-        if(userFromDb != null)
+        if(!userService.addUser(user))
         {
-             model.addAttribute("message", "User exists");
-             return "registration";
+            model.addAttribute("message", "User exists");
+            return "registration";
         }
-
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
-        userRepo.save(user);
-
-
         return "redirect:/login";
     }
+    @GetMapping("/activate/{code}")
+    public String activate(Model model, @PathVariable String code){
+
+        boolean isActivated = userService.activateUser(code);
+
+        if(isActivated) {
+            System.out.printf("activate");
+        }
+
+        return "login";
+    }
+
+//    Данный PostMapping использовать без подтверждения аккаунта
+
+//    @PostMapping("/registration")
+//    public String addUser(User user, Model model) {
+//        User userFromDb = userRepo.findByUsername(user.getUsername());
+//        if(userFromDb != null)
+//        {
+//             model.addAttribute("message", "User exists");
+//             return "registration";
+//        }
+//
+//        user.setActive(true);
+//        user.setRoles(Collections.singleton(Role.USER));
+//        userRepo.save(user);
+//
+//
+//        return "redirect:/login";
+//    }
 
 
     @GetMapping("/all")
@@ -52,6 +85,23 @@ public class GreetingController {
         model.addAttribute("childs", childs);
         return "allChilds";
     }
+    @GetMapping("/comment")
+    public String comment(Model model) {
+        Iterable<Comment> comments = commetsRepo.findAll();
+        model.addAttribute("comments", comments);
+        return "comment";
+    }
+    @PostMapping("/comment")
+    public String commentAdd(
+            @AuthenticationPrincipal User user,
+            @RequestParam String text,
+            Model model){
+        Comment comment = new Comment(text,user);
+
+        commetsRepo.save(comment);
+        return "about";
+    }
+
     @GetMapping("/addChild")
     public String addChild(Model model) {
         return "addChild";

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" media="all"
           href="/css/index.css" th:href="@{/css/index.css}" />
 </head>
@@ -12,7 +12,7 @@
     <h2> Мы рады вас видеть! </h2>
 
     <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+        <input type="submit" value="Sign Out"/>
     </form>
 
     <br/>
@@ -21,18 +21,36 @@
     <a href="/news"><button class="buttonmenu"> Новости </button></a>
     <a href="/gallery"><button class="buttonmenu"> Галерея </button></a>
     <a href="/staff"><button class="buttonmenu"> Персонал </button></a>
-    <a href="/comment"><button class="buttonmenu"> Отзывы </button></a>
+    <a href="/feedback"><button class="buttonmenu"> Отзывы </button></a>
     <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
     <a href="/Reg"><button class="buttonmenu"> Вход </button></a>
 </header>
-    <div>
+<div>
 
+    <form action="/comment" method="post">
+        <label> Комментарий </label>
+        <input type="text" name="text" placeholder="место под комментарий">
+        <input type="submit" value="Отправить"/>
+    </form>
+
+
+
+
+
+    <div th:each="el : ${comments}" >
+        <label th:text="${el.id}" ></label>
+        <label th:text="${el.text}" ></label>
+        <label th:text="${el.getAuthorName()}" ></label>
     </div>
-    <footer>
-        <h5> О сайте: </h5>
-        <h6> Учебный сайт для тренировки навыков программирования
-             на примере организации частного детского сада </h6>
-    </footer>
+
+
+
+</div>
+<footer>
+    <h5> О сайте: </h5>
+    <h6> Учебный сайт для тренировки навыков программирования
+        на примере организации частного детского сада </h6>
+</footer>
 
 
 </body>
