@@ -22,7 +22,6 @@ public class UserService implements UserDetailsService {
     private MailSender mailSender;
     @Autowired
     private UserRepo userRepo;
-
     @Autowired
     private RegisUserRepo regisUserRepo;
 
@@ -62,15 +61,10 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-
         User user = new User();
         user.setPassword(regisUser.getPassword());
         user.setUsername(regisUser.getUsername());
         user.setActive(true);
-
-                //userRepo.findByActivationCode(code);
-
-//        user.setActivationCode(null);
 
         userRepo.save(user);
 

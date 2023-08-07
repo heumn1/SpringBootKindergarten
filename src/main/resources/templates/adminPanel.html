@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="header" >
+    <h1> Детский садик "Счасливый ребёнок" </h1>
+
+    <br/>
+    <a href="/"><button class="buttonmenu"> Вернуться </button></a>
+</header>
+<div>
+
+    <table border="1" style="width:300px">
+        <tr>
+            <td>name</td>
+            <td>role</td>
+            <td></td>
+        </tr>
+        <tr th:each="el : ${users} " >
+            <td th:text="${el.username}" />
+            <td> <span th:text="${el.roles.role}">[role]</span> </td>
+        </tr>
+    </table>
+
+    Добавить новость
+    <form th:action="@{/addNews}" method="post" enctype="multipart/form-data" >
+        <input type="text" name="tag" placeholder="Заголовок">
+        <br/>
+        <input type="text" name="text" placeholder="Новость"/>
+        <br/>
+        <input type="file" name="file">
+        <br/>
+        <button type="submit">Добавить</button>
+    </form>
+
+
+
+</div>
+<footer>
+    <h5> О сайте: </h5>
+    <h6> Учебный сайт для тренировки навыков программирования
+        на примере организации частного детского сада </h6>
+</footer>
+</body>
+</html>

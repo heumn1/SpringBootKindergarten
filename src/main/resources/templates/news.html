@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" type="text/css" media="all"
+        href="/css/index.css" th:href="@{/css/index.css}" />
+</head>
+<body>
+<header class="header" >
+  <h1> Детский садик "Счасливый ребёнок" </h1>
+  <h2> Мы рады вас видеть! </h2>
+
+  <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+  </form>
+
+  <br/>
+  <a href="/"><button class="buttonmenu"> Главная </button></a>
+  <a href="/about"><button class="buttonmenu"> О нас </button></a>
+  <a href="/news"><button class="buttonmenu"> Новости </button></a>
+  <a href="/gallery"><button class="buttonmenu"> Галерея </button></a>
+  <a href="/staff"><button class="buttonmenu"> Персонал </button></a>
+  <a href="/feedback"><button class="buttonmenu"> Отзывы </button></a>
+  <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
+  <a href="/Reg"><button class="buttonmenu"> Вход </button></a>
+</header>
+<div sec:authorize="hasAuthority('ADMIN')" >
+  Добавить новость
+  <form th:action="@{/addNews}" method="post" enctype="multipart/form-data" >
+    <input type="text" name="tag" placeholder="Заголовок">
+    <br/>
+    <input type="text" name="text" placeholder="Новость"/>
+    <br/>
+    <input type="file" name="file" accept="image/*" >
+    <br/>
+    <button type="submit">Добавить</button>
+  </form>
+</div>
+<div th:each="news: ${allNews}">
+  <div><H1 th:text="${news.tag}">text</H1></div>
+  <div><img th:src="@{/img/{filename}(filename = ${news.filename})}"  alt="Изображение" class="leftImage" ><label class="textAboutMain" th:text="${news.text}">text</label></div>
+</div>
+<footer>
+  <h5> О сайте: </h5>
+  <h6> Учебный сайт для тренировки навыков программирования
+    на примере организации частного детского сада </h6>
+</footer>
+</body>
+</html>

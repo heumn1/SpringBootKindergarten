@@ -16,6 +16,8 @@
   <div><input type="submit" value="Sign In"/></div>
 </form>
 
-<a href="registration.html"> Регистрвция </a>
+<form th:action="@{/registration}" method="get">
+  <input type="submit" value="Регистрация"/>
+</form>
 </body>
 </html>

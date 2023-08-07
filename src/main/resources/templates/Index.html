@@ -12,9 +12,12 @@
     <h2> Мы рады вас видеть! </h2>
 
     <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input type="submit" value="Вход"/>
     </form>
 
+    <div sec:authorize="hasAuthority('ADMIN')">
+        <a href="/admin/"><button class="buttonmenu"> Панель Админа </button></a>
+    </div>
     <br/>
     <a href="/"><button class="buttonmenu"> Главная </button></a>
     <a href="/about"><button class="buttonmenu"> О нас </button></a>
@@ -23,7 +26,6 @@
     <a href="/staff"><button class="buttonmenu"> Персонал </button></a>
     <a href="/comment"><button class="buttonmenu"> Отзывы </button></a>
     <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
-    <a href="/Reg"><button class="buttonmenu"> Вход </button></a>
 </header>
     <div>
 
