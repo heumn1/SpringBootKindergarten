@@ -1,11 +1,13 @@
 package ru.heumn.SpringBootApp.service;
 
+import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import ru.heumn.SpringBootApp.domain.Employee;
 import ru.heumn.SpringBootApp.domain.News;
-import ru.heumn.SpringBootApp.repos.NewsRepo;
+import ru.heumn.SpringBootApp.repos.EmployeeRepo;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,14 +17,14 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
-public class NewsService {
+public class EmployeeService {
     @Value("${upload.path}")
     private String uploadPath;
 
     @Autowired
-    private NewsRepo newsRepo;
+    private EmployeeRepo employeeRepo;
 
-    public void addNews(String tag, String text, MultipartFile file) throws IOException {
+    public void addEmployee(String name, String lastName, String patronymic, String position, MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()) {
@@ -34,17 +36,18 @@ public class NewsService {
 
             //Загрузка файла на жесткий диск
             file.transferTo(new File(uploadPath + "/" + resultFilename));
-            News news = new News(text,tag,resultFilename);
+            Employee employee = new Employee(name,lastName,patronymic,position,resultFilename);
 
             //добавление данных в БД
-            newsRepo.save(news);
+            employeeRepo.save(employee);
         }
     }
 
-    public void deleteNews(String name) {
-        News news = newsRepo.findByTag(name);
+    public void deleteEmployee(String name, String lastName){
 
-        String filename = news.getFilename();
+        Employee employee = employeeRepo.findByNameAndLastname(name,lastName);
+
+        String filename = employee.getFilename();
         //получение ссылки нахождения файла
         Path path = Paths.get(uploadPath + "\\" + filename);
 
@@ -54,6 +57,6 @@ public class NewsService {
             throw new RuntimeException(e);
         }
         //удаление записи из БД
-        newsRepo.delete(news);
+        employeeRepo.delete(employee);
     }
 }

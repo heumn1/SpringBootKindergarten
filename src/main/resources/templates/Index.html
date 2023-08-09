@@ -23,9 +23,10 @@
     <a href="/about"><button class="buttonmenu"> О нас </button></a>
     <a href="/news"><button class="buttonmenu"> Новости </button></a>
     <a href="/gallery"><button class="buttonmenu"> Галерея </button></a>
-    <a href="/staff"><button class="buttonmenu"> Персонал </button></a>
+    <a href="/employee"><button class="buttonmenu"> Персонал </button></a>
     <a href="/comment"><button class="buttonmenu"> Отзывы </button></a>
     <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/addChild"><button class="buttonmenu"> Проверить записи </button></a>
 </header>
     <div>
 

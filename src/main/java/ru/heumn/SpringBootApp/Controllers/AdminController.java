@@ -18,10 +18,15 @@ public class AdminController {
     @Autowired
     private UserRepo userRepo;
 
-    @GetMapping("/")
+    @GetMapping()
     public String userList(Model model) {
         model.addAttribute("users", userRepo.findAll());
         return "adminPanel";
+    }
+
+    @GetMapping("/check")
+    public String checkChildAdd(Model model) {
+        return "check";
     }
 
 }

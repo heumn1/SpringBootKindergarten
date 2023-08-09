@@ -12,7 +12,7 @@ public class RegisUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty(message = "Поле username не может быть пустым")
-    @Size(min = 2, max = 20, message = "логин не должен содержать больше 20 символов")
+    @Size(min = 2, max = 20, message = "логин не должен содержать больше 20 символов или быть меньше 2 символов")
     private String username;
     @NotEmpty(message = "Поле password не может быть пустым")
     private String password;

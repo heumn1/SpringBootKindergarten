@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/index.css" th:href="@{/css/index.css}" />
+</head>
+<body>
+<header class="header" >
+    <h1> Детский садик "Счасливый ребёнок" </h1>
+    <h2> Мы рады вас видеть! </h2>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
+    <br/>
+    <a href="/"><button class="buttonmenu"> Главная </button></a>
+    <a href="/about"><button class="buttonmenu"> О нас </button></a>
+    <a href="/news"><button class="buttonmenu"> Новости </button></a>
+    <a href="/gallery"><button class="buttonmenu"> Галерея </button></a>
+    <a href="/staff"><button class="buttonmenu"> Персонал </button></a>
+    <a href="/feedback"><button class="buttonmenu"> Отзывы </button></a>
+    <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
+    <a href="/Reg"><button class="buttonmenu"> Вход </button></a>
+</header>
+<div sec:authorize="hasAuthority('ADMIN')" >
+    Добавить сотрудника на страницу
+    <form th:action="@{/employee/add}" method="post" enctype="multipart/form-data" >
+        <input type="text" name="name" placeholder="Имя">
+        <br/>
+        <input type="text" name="lastname" placeholder="Фамилия">
+        <br/>
+        <input type="text" name="patronymic" placeholder="Отчество">
+        <br/>
+        <input type="text" name="position" placeholder="Должность"/>
+        <br/>
+        <input type="file" name="file" accept="image/*" >
+        <br/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div th:each="employee: ${allEmployees}">
+    <div><H1 th:text="${employee.position}">text</H1></div>
+    <div sec:authorize="hasAuthority('ADMIN')">
+        <form method="post"  th:action="@{/employee/delete/}">
+            <input type="hidden" name="name" th:value="${employee.name}" >
+            <input type="hidden" name="lastname" th:value="${employee.lastname}">
+            <input type="submit" value="удалить запись о сотруднике"/></form>
+    </div>
+    <span >
+            <label class="textAboutMain" th:text="${employee.name}">text</label> <br/>
+            <label class="textAboutMain" th:text="${employee.lastname}">text</label> <br/>
+            <label class="textAboutMain" th:text="${employee.patronymic}">text</label> <br/>
+        </span>
+    <p>
+        <img th:src="@{/img/{filename}(filename = ${employee.filename})}" alt="Изображение" width="15%" height="100%" align="top">
+    </p>
+    <br/>
+</div>
+<footer>
+    <h5> О сайте: </h5>
+    <h6> Учебный сайт для тренировки навыков программирования
+        на примере организации частного детского сада </h6>
+</footer>
+</body>
+</html>

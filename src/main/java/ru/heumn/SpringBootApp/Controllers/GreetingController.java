@@ -28,36 +28,6 @@ public class GreetingController {
     private ChildsRepository childsRepository;
     @Autowired
     private CommetsRepo commetsRepo;
-    @Autowired
-    private NewsRepo newsRepo;
-    @Autowired
-    private NewsService newsService;
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private RegisUserRepo regisUserRepo;
-    @Autowired
-    private UserService userService;
-
-
-    @GetMapping("/news")
-    public String News(Model model) {
-        Iterable<News> news = newsRepo.findAll();
-        model.addAttribute("allNews", news);
-
-        return "news";
-    }
-
-    @PostMapping("/addNews")
-    public String addNews( @RequestParam String text,
-                           @RequestParam String tag,
-                           @RequestParam MultipartFile file
-    ) throws IOException {
-        newsService.addNews(tag,text,file);
-        return "redirect:/admin/";
-    }
-
-
     @GetMapping("/all")
     public String childsMain(Model model) {
         Iterable<Childs> childs = childsRepository.findAll();

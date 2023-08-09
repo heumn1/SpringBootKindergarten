@@ -9,7 +9,6 @@ public class Comment {
     private Integer id;
 
     private String text;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
