@@ -10,22 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.heumn.SpringBootApp.domain.RegisUser;
-import ru.heumn.SpringBootApp.repos.ChildsRepository;
-import ru.heumn.SpringBootApp.repos.CommetsRepo;
-import ru.heumn.SpringBootApp.repos.RegisUserRepo;
-import ru.heumn.SpringBootApp.repos.UserRepo;
 import ru.heumn.SpringBootApp.service.UserService;
 
 @Controller
 public class UserController {
-    @Autowired
-    private ChildsRepository childsRepository;
-    @Autowired
-    private CommetsRepo commetsRepo;
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private RegisUserRepo regisUserRepo;
     @Autowired
     private UserService userService;
 
@@ -58,5 +46,4 @@ public class UserController {
 
         return "login";
     }
-
 }

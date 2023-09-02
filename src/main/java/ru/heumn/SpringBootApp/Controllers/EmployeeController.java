@@ -1,8 +1,6 @@
 package ru.heumn.SpringBootApp.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import ru.heumn.SpringBootApp.domain.Childs;
 import ru.heumn.SpringBootApp.domain.Employee;
-import ru.heumn.SpringBootApp.domain.News;
 import ru.heumn.SpringBootApp.repos.EmployeeRepo;
 import ru.heumn.SpringBootApp.service.EmployeeService;
 
@@ -34,7 +30,6 @@ public class EmployeeController {
         return "employee";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/add")
     public String employeeAdd(
             @RequestParam String name,
@@ -47,7 +42,6 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/delete/")
     public String employeeDelete(
             @RequestParam String name,

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<div class="header" th:fragment="header">
+    <h1> Детский садик "Счасливый ребёнок" </h1>
+    <h2> Мы рады вас видеть! </h2>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Вход"/>
+    </form>
+    <br/>
+    <a href="/"><button class="buttonmenu"> Главная </button></a>
+    <a href="/about"><button class="buttonmenu"> О нас </button></a>
+    <a href="/news"><button class="buttonmenu"> Новости </button></a> <br/>
+    <a href="/employee"><button class="buttonmenu"> Персонал </button></a>
+    <a href="/comment"><button class="buttonmenu"> Отзывы </button></a>
+    <a sec:authorize="!hasAuthority('ADMIN')" href="/request/"><button class="buttonmenu"> Запись </button></a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/request/check"><button class="buttonmenu"> Проверить записи </button></a>
+</div>
+
+<div class="footer" th:fragment="footer">
+    <h5> О сайте: </h5>
+    <h6> Учебный сайт для тренировки навыков программирования
+        на примере организации частного детского сада </h6>
+</div>
+
+</body>
+</html>

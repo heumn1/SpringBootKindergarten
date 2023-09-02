@@ -1,39 +1,26 @@
 package ru.heumn.SpringBootApp.Controllers;
 
-import jakarta.persistence.CollectionTable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import ru.heumn.SpringBootApp.domain.*;
 import ru.heumn.SpringBootApp.repos.*;
-import ru.heumn.SpringBootApp.service.NewsService;
-import ru.heumn.SpringBootApp.service.UserService;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Controller
 public class GreetingController {
 
-    @Autowired
-    private ChildsRepository childsRepository;
+//    @Autowired
+//    private ChildsRepository childsRepository;
     @Autowired
     private CommetsRepo commetsRepo;
-    @GetMapping("/all")
-    public String childsMain(Model model) {
-        Iterable<Childs> childs = childsRepository.findAll();
-        model.addAttribute("childs", childs);
-        return "allChilds";
-    }
+//    @GetMapping("/all")
+//    public String childsMain(Model model) {
+//        Iterable<Childs> childs = childsRepository.findAll();
+//        model.addAttribute("childs", childs);
+//        return "allChilds";
+//    }
     @GetMapping("/comment")
     public String comment(Model model) {
         Iterable<Comment> comments = commetsRepo.findAll();
@@ -53,7 +40,7 @@ public class GreetingController {
 
     @GetMapping("/addChild")
     public String addChild(Model model) {
-        return "addChild";
+        return "request";
     }
     @GetMapping("/about")
     public String about(Model model) {
@@ -70,15 +57,15 @@ public class GreetingController {
 //        model.addAttribute("childs", childs);
 //        return "allChilds";
 //    }
-    @PostMapping("/add")
-    public String childPostADD(
-            @RequestParam String nameChild,@RequestParam String lastname,
-            @RequestParam String patronymic,@RequestParam String age,
-            @RequestParam String groupa,
-            Model model){
-
-        Childs childs = new Childs(nameChild, lastname,patronymic,age,groupa);
-        childsRepository.save(childs);
-        return "redirect:/all";
-    }
+//    @PostMapping("/add")
+//    public String childPostADD(
+//            @RequestParam String nameChild,@RequestParam String lastname,
+//            @RequestParam String patronymic,@RequestParam String age,
+//            @RequestParam String groupa,
+//            Model model){
+//
+//        Childs childs = new Childs(nameChild, lastname,patronymic,age,groupa);
+//        childsRepository.save(childs);
+//        return "redirect:/all";
+//    }
 }

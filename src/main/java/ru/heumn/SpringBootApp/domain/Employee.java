@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -13,12 +14,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2, max = 20, message = "Имя не должено содержать больше 20 символов или быть меньше 2 символов")
     private String name;
+    @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2, max = 20, message = "Фамилия не должена содержать больше 20 символов или быть меньше 2 символов")
     private String lastname;
     private String patronymic;
 
+    @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2, max = 25, message = "Должность не должена содержать больше 25 символов или быть меньше 2 символов")
     private String position;
 

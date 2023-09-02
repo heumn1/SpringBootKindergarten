@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" type="text/css" media="all"
+        href="/css/index.css" th:href="@{/css/index.css}" />
+</head>
+<body>
+<div th:insert="~{pattern :: header}"></div>
+<div class="textAboutMain" >
+  <table border="1" style="width:300px">
+    <tr>
+      <td>Имя</td>
+      <td>Номер</td>
+      <td>Действие</td>
+    </tr>
+    <tr th:each="request : ${requests} " >
+      <td th:text="${request.name}" />
+      <td th:text="${request.number}" />
+      <td>
+      <div><a methods="post"  th:href="@{/request/delete/{number}(number = ${request.number})}"><button> Принято </button></a></div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div th:insert="~{pattern :: footer}"></div>
+</body>
+</html>

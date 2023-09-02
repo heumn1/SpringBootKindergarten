@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/index.css" th:href="@{/css/index.css}" />
+</head>
+<body>
+<div th:insert="~{pattern :: header}"></div>
+
+<div style="color:red" th:if="${errorRequest != null}" >
+    Вы уже запросили звонок
+</div>
+<div>
+    <form th:action="@{/request/}" method="post" th:object="${request}">
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</div>
+        <div><label> Имя: <input type="text" th:field="*{name}" id="name"/> </label></div>
+        <div style="color:red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">error</div>
+        <div><label> Номер телефона : <input type="tel" th:field="*{number}" id="number" placeholder="введите номер телефона без +" /> </label></div>
+        <div><input type="submit" value="Запросить звонок"/></div>
+    </form>
+</div>
+
+<div th:insert="~{pattern :: footer}"></div>
+</body>
+</html>

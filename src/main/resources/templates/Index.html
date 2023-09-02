@@ -7,36 +7,10 @@
           href="/css/index.css" th:href="@{/css/index.css}" />
 </head>
 <body>
-<header class="header" >
-    <h1> Детский садик "Счасливый ребёнок" </h1>
-    <h2> Мы рады вас видеть! </h2>
-
-    <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Вход"/>
-    </form>
-
-    <div sec:authorize="hasAuthority('ADMIN')">
-        <a href="/admin/"><button class="buttonmenu"> Панель Админа </button></a>
-    </div>
-    <br/>
-    <a href="/"><button class="buttonmenu"> Главная </button></a>
-    <a href="/about"><button class="buttonmenu"> О нас </button></a>
-    <a href="/news"><button class="buttonmenu"> Новости </button></a>
-    <a href="/gallery"><button class="buttonmenu"> Галерея </button></a>
-    <a href="/employee"><button class="buttonmenu"> Персонал </button></a>
-    <a href="/comment"><button class="buttonmenu"> Отзывы </button></a>
-    <a href="/addChild"><button class="buttonmenu"> Запись </button></a>
-    <a sec:authorize="hasAuthority('ADMIN')" href="/addChild"><button class="buttonmenu"> Проверить записи </button></a>
-</header>
+<div th:insert="~{pattern :: header}"></div>
     <div>
 
     </div>
-    <footer>
-        <h5> О сайте: </h5>
-        <h6> Учебный сайт для тренировки навыков программирования
-             на примере организации частного детского сада </h6>
-    </footer>
-
-
+<div th:insert="~{pattern :: footer}"></div>
 </body>
 </html>

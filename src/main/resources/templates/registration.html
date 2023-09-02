@@ -12,9 +12,6 @@
 </div>
 
 Регистрация
-<!--<p th:if="${#fields.hasErrors('email')}">Invalid email</p>-->
-<!--<p th:if="${#fields.hasErrors('username')}">Invalid email</p>-->
-<!--<p th:if="${#fields.hasErrors('password')}">Invalid email</p>-->
 <form th:action="@{/registration}" th:method="POST" th:object="${regisUser}" >
   <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</div>
   <div><label> Email: <input type="email" th:field="*{email}" id="email"/> </label></div>
